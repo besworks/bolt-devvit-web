@@ -9,15 +9,24 @@ app.use(express.text());
 app.use(devvitMiddleware);
 
 const router = express.Router();
-router.get('/api/user', getUser);
+router.get('/api/context', getContext);
 app.use(router);
 
-async function getUser(request, response) {
-  const profile = await request.devvit.reddit.getCurrentUser();
-  const username = profile?.username ?? 'Anon';
-  const defaultAvatarUrl = 'https://www.redditstatic.com/shreddit/assets/thinking-snoo.png';
-  const avatar = (await profile?.getSnoovatarUrl()) ?? defaultAvatarUrl;
-  response.json({ type: 'userdata', username, avatar });
+async function getContext(request, response) {
+  const context = request.devvit;
+  
+  const data = {
+    subredditId: context?.subredditId,
+    subredditName: context?.subredditName,
+    postId: context?.postId,
+    userId: context?.userId
+  };
+  
+  const profile = await context.reddit.getCurrentUser();
+  data.userAvatar = await profile?.getSnoovatarUrl();
+  data.userName = profile?.username ?? 'Anon';
+
+  response.json({ type: 'context', data });
 }
 
 function onServerStart() {
