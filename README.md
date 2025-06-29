@@ -4,7 +4,7 @@ A barebones template for creating inline [Devvit](https://developers.reddit.com/
 
 ## Features
 
-- Streamlined npm scripts. Just import into bolt and follow the prompts.
+- Streamlined npm scripts. Just [import into Bolt](https://github.com/besworks/unofficial-bolt-devvit-web) and follow the prompts.
 - No automatic bundling. Manage your own front-end dependencies.
 - Very simple example. Basic HTML page with Bolt.new badge linked using Devvit UI client.
 - Express API which returns the current Reddit context when requested.
