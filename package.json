@@ -7,8 +7,8 @@
   "scripts": {
     "setup": "node setup.js",
     "postinstall": "npm run login && npm run setup && npm run init",
-    "login": "(node -e \"import fs from 'fs'; process.exit(fs.existsSync('.auth') ? 1 : 0);\" && devvit login --copy-paste && touch .auth) || true",
-    "init": "(node -e \"import fs from 'fs'; process.exit(fs.existsSync('.initialized') ? 1 : 0);\" && npm run deploy) || true",
+    "login": "node -e \"import fs from 'fs'; process.exit(fs.existsSync('.auth') ? 0 : 1);\" || (devvit login --copy-paste && touch .auth)",
+    "init": "node -e \"import fs from 'fs'; process.exit(fs.existsSync('.initialized') ? 0 : 1);\" || npm run deploy",
     "deploy": "devvit upload --copy-paste && touch .initialized",
     "dev": "devvit playtest YOUR_SUBREDDIT_NAME_GOES_HERE"
   },
