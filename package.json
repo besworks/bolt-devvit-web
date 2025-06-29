@@ -1,0 +1,22 @@
+{
+  "private": true,
+  "name": "your-app-name-goes-here",
+  "version": "0.0.0",
+  "license": "BSD-3-Clause",
+  "type": "module",
+  "scripts": {
+    "postinstall": "npm run login && npm run init",
+    "login": "(node -e \"import fs from 'fs'; process.exit(fs.existsSync('.auth') ? 1 : 0);\" && devvit login --copy-paste && touch .auth) || true",
+    "init" : "(node -e \"import fs from 'fs'; process.exit(fs.existsSync('.initialized') ? 1 : 0);\" && npm run deploy) || true",
+    "deploy": "devvit upload --copy-paste && touch .initialized",
+    "dev": "devvit playtest YOUR_SUBREDDIT_NAME_GOES_HERE"
+  },
+  "dependencies": {
+    "@devvit/public-api": "0.11.16",
+    "@devvit/server": "0.11.16",
+    "express": "5.1.0"
+  },
+  "devDependencies": {
+    "devvit": "0.11.17"
+  }
+}
