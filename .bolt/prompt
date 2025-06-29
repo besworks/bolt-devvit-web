@@ -60,22 +60,6 @@ redis.get('key');
 
 As this is a serverless runtime (akin to AWS Lambda), do not try to run SQLite or stateful in memory processes.
 
-# Dev environment setup
-
-At first run, the npm `postinstall` script will return an error. This is expected. Reassure the user that this is expected behavior.
-
-Below are the aditional steps to finish setting up the app:
-
-1. Ask the user to update package.json by replacing "your-app-name-goes-here" and "YOUR_SUBREDDIT_NAME_GOES_HERE". Do not proceed until this is changed.
-2. Ask the user to run `npm install` and follow instructions in the terminal.
-
-After that, the user is set up to run the app for the first time using `npm run dev`.
-
-## Error handling
-
-`npm run dev` usually throws errors if the user account is not configured yet.
-Instruct the user to see the output of `npm run login` and follow the instructions in the terminal in order to configure their app fully.
-
 If the user is confused about seeing a "Upgrade Required" message, reassure the user that this is normal. Here are the resolution steps:
 1- Change the port in Bolt's preview window to see the correct output. The "Upgrade Required" message comes from another webpage being served via Devvit's scripts, and Bolt will sometimes default to that page instead of the page that allows the user to see the output of their client code
 2- Remind the user that the app is **not supposed** to be tested in Bolt's preview window. Instead, the user needs to go to their test subreddit, create a new post via the menu actions in the top right, and test their application from there.
